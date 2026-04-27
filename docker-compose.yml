@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      APP_NAME: StayNest Booking API
+      AUTHOR_FULL_NAME: Dimitry Elizabarovich Krushinskiy
+      DATABASE_URL: sqlite:////app/data/staynest.db
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+    ports:
+      - "8000:8000"
+    volumes:
+      - staynest-db:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+        NEXT_PUBLIC_AUTHOR_FULL_NAME: Dimitry Elizabarovich Krushinskiy
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  staynest-db:
