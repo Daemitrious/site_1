@@ -1,0 +1,20 @@
+[project]
+name = "staynest-booking-api"
+version = "1.0.0"
+description = "Production-minded apartment booking API for a technical assignment."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi[standard]>=0.136,<1.0",
+  "sqlalchemy>=2.0,<3.0",
+  "pydantic-settings>=2.8,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0",
+  "httpx>=0.28,<1.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
